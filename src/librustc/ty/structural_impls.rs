@@ -493,6 +493,10 @@ impl<'a, 'tcx, O: Lift<'tcx>> Lift<'tcx> for interpret::EvalErrorKind<'a, O> {
                 tcx.lift(&a)?,
                 tcx.lift(&b)?,
             ),
+            FunctionRetMismatch(a, b) => FunctionRetMismatch(
+                tcx.lift(&a)?,
+                tcx.lift(&b)?,
+            ),
             FunctionArgCountMismatch => FunctionArgCountMismatch,
             NoMirFor(ref s) => NoMirFor(s.clone()),
             UnterminatedCString(ptr) => UnterminatedCString(ptr),
